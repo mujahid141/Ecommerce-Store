@@ -33,6 +33,10 @@ def products(request):
             return Response('Ok')
         else:
             return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST )
-@api_view(['POST'])  # Specify the allowed HTTP methods (e.g., GET)
-def postProduct():
-        serializer = ProductSerializer(data=request.data)
+@api_view(['POST'])
+def postProduct(request):
+    serializer = ProductSerializer(data=request.data)
+    if serializer.is_valid():
+        # Process the data, save to database, etc.
+        return Response({"message": "Product created successfully"}, status=201)
+    return Response(serializer.errors, status=400)
