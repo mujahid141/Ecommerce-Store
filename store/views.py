@@ -33,3 +33,6 @@ def products(request):
             return Response('Ok')
         else:
             return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST )
+@api_view(['POST'])  # Specify the allowed HTTP methods (e.g., GET)
+def postProduct():
+        serializer = ProductSerializer(data=request.data)
