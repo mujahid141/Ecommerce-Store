@@ -18,7 +18,7 @@ class Collection(models.Model):
 class Product(models.Model):
     p_id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=225)
-    description = models.TextField()
+    description = models.TextField(null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)  # Adjust max_digits based on your requirements
     inventory = models.IntegerField()  # Corrected typo in field name
     last_update = models.DateTimeField(auto_now_add=True)

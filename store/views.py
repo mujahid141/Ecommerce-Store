@@ -30,12 +30,14 @@ def products(request):
         serializer = ProductSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.validated_data
+        serializer.save()
         return Response('Ok')
         
 @api_view(['POST'])
 def postProduct(request):
     serializer = ProductSerializer(data=request.data)
     serializer.is_valid(raise_exception=True)
+    serializer.validated_data
     serializer.save()
-    return Response({"message": "Product created successfully"})
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
     
