@@ -23,7 +23,7 @@ class Product(models.Model):
     inventory = models.IntegerField()  # Corrected typo in field name
     last_update = models.DateTimeField(auto_now_add=True)
     collection = models.ForeignKey(Collection, on_delete=models.CASCADE)
-    promotions = models.ManyToManyField(Promotions)
+    promotions = models.ManyToManyField(Promotions ,null=True)
 
     def __str__(self) -> str:
         return self.title

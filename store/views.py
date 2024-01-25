@@ -28,15 +28,14 @@ def products(request):
         return Response(serializer.data)
     elif request.method == 'POST':
         serializer = ProductSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.validated_data
-            return Response('Ok')
-        else:
-            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST )
+        serializer.is_valid(raise_exception=True)
+        serializer.validated_data
+        return Response('Ok')
+        
 @api_view(['POST'])
 def postProduct(request):
     serializer = ProductSerializer(data=request.data)
-    if serializer.is_valid():
-        # Process the data, save to database, etc.
-        return Response({"message": "Product created successfully"}, status=201)
-    return Response(serializer.errors, status=400)
+    serializer.is_valid(raise_exception=True)
+    serializer.save()
+    return Response({"message": "Product created successfully"})
+    
