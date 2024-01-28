@@ -12,7 +12,7 @@ from .serializers import ProductSerializer
 def hello(request):
     return Response("ok")
 
-@api_view(['GET' , 'POST','DELETE'])  # Specify the allowed HTTP methods (e.g., GET)
+@api_view(['GET' , 'POST','DELETE','PUT'])  # Specify the allowed HTTP methods (e.g., GET)
 def product(request, id):
     if request.method == 'GET':
         product = Product.objects.get(pk=id)
@@ -28,7 +28,7 @@ def product(request, id):
 @api_view(['GET' , 'POST'])  # Specify the allowed HTTP methods (e.g., GET)
 def products(request):
     if request.method == 'GET':
-        queryset = Product.objects.filter(price=10)
+        queryset = Product.objects.filter(price= 10)
         serializer =  ProductSerializer(queryset, many = True)
         return Response(serializer.data)
     elif request.method == 'POST':
