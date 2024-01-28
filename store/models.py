@@ -22,7 +22,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)  # Adjust max_digits based on your requirements
     inventory = models.IntegerField()  # Corrected typo in field name
     last_update = models.DateTimeField(auto_now_add=True)
-    collection = models.ForeignKey(Collection, on_delete=models.CASCADE)
+    collection = models.ForeignKey(Collection, on_delete=models.CASCADE,null=True)
     promotions = models.ManyToManyField(Promotions ,null=True)
 
     def __str__(self) -> str:
